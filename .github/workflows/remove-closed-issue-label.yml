@@ -19,9 +19,8 @@ jobs:
           };
           const labelToRemove = 'bug';
           const issue = await github.rest.issues.get(req);
-          console.log(issue);
           const labels = issue.data.labels;
-          const hasLabel = labels.data.some(label => label.name === labelToRemove);
+          const hasLabel = labels.some(label => label.name === labelToRemove);
           if (hasLabel) {
             await github.rest.issues.removeLabel({...req, name: labelToRemove});
           }
