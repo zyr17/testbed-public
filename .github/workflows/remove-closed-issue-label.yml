@@ -18,6 +18,8 @@ jobs:
             repo: context.repo.repo,
           };
           const labelToRemove = 'bug';
+          const issue = github.rest.issues.get(req);
+          console.log(issue);
           const labels = github.rest.issues.getLabel(req);
           console.log(labels);
           const hasLabel = labels.data.some(label => label.name === labelToRemove);
