@@ -17,5 +17,5 @@ jobs:
           const labels = await github.rest.issues.listLabelsOnIssue(issue);
           const hasLabel = labels.data.some(label => label.name === labelToRemove);
           if (hasLabel) {
-            await github.issues.removeLabel({...issue, name: labelToRemove});
+            await github.rest.issues.removeLabel({...issue, name: labelToRemove});
           }
