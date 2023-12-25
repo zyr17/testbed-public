@@ -14,7 +14,7 @@ jobs:
         script: |
           const issue = context.issue;
           const labelToRemove = 'bug';
-          const labels = await github.issues.listLabelsOnIssue(issue);
+          const labels = await github.rest.issues.listLabelsOnIssue(issue);
           const hasLabel = labels.data.some(label => label.name === labelToRemove);
           if (hasLabel) {
             await github.issues.removeLabel({...issue, name: labelToRemove});
