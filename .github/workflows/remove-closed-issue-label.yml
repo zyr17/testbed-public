@@ -3,6 +3,9 @@ on:
   issues:
     types: [closed]
 
+permissions:
+  issues: write
+
 jobs:
   remove_label:
     runs-on: ubuntu-latest
