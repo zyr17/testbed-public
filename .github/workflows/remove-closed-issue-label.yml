@@ -1,0 +1,21 @@
+name: Remove Bug Label
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  remove_label:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Remove label
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const issue = context.issue;
+          const labelToRemove = 'bug';
+          const labels = await github.issues.listLabelsOnIssue(issue);
+          const hasLabel = labels.data.some(label => label.name === labelToRemove);
+          if (hasLabel) {
+            await github.issues.removeLabel({...issue, name: labelToRemove});
+          }
